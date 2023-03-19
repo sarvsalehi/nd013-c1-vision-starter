@@ -141,20 +141,35 @@ python inference_video.py --labelmap_path label_map.pbtxt --model_path experimen
 ## Submission Template
 
 ### Project overview
-This section should contain a brief description of the project and what we are trying to achieve. Why is object detection such an important component of self driving car systems?
+This project is about object detection in urban scenarios based on the camera images from the waymo dataset. 
+Output are the following:
+1. Results of an Exploratory Data Analysis(developed in Exploratory Data Analysis.ipynb) which should define the potential approach for optimization. 
+2. Bassed on above analysis different augmentation approach are tested in Explore augmentations.ipynb.  
+3. The dataset is split to train, val, test for training, validation, testing. this is implemented in creat_splits.py. 
+4. The training is done using train dataset as input to a pretrained SSD Resnet 50 640x640 model. for this edit_config.py is used to create a config file with paths to train and val dataset also batch size for training. evaluation is done using val dataset by trained model and using the checkpoints from training. 
+5. config file is modified to optimize based on augmentation and new optimizer. training and evaluation is done similar to above steps and using tensorboard the results are compared.
+6.
 
 ### Set up
-This section should contain a brief description of the steps to follow to run the code for this repository.
+Follow the same instructions for local setup which are recommended in the original repository. 
 
 ### Dataset
 #### Dataset analysis
-This section should contain a quantitative and qualitative description of the dataset. It should include images, charts and other visualizations.
-#### Cross validation
-This section should detail the cross validation strategy and justify your approach.
+
 
 ### Training
 #### Reference experiment
-This section should detail the results of the reference experiment. It should includes training metrics and a detailed explanation of the algorithm's performances.
+Using the original config file resulted the following:
+
+![training1n](https://user-images.githubusercontent.com/125278855/226180774-9417a61d-5e87-4508-a964-a7186847383b.png)
+
+After optimization using the new config file adding augmentation and adam optimizer instead of momentum_optimizer 
+
+![training2n](https://user-images.githubusercontent.com/125278855/226180872-865c92c8-330d-4a05-b30d-d48dc2d4faf1.png)
+
+![training2n_precision](https://user-images.githubusercontent.com/125278855/226180883-a64784e7-6f91-4243-a417-13630250a116.png)
+
+![training2n_recall](https://user-images.githubusercontent.com/125278855/226180894-50fad06b-e99f-455d-8429-9fd1472630f6.png)
 
 #### Improve on the reference
 This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.
