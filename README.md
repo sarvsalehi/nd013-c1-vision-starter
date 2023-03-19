@@ -148,13 +148,19 @@ Output are the following:
 3. The dataset is split to train, val, test for training, validation, testing. this is implemented in creat_splits.py. 
 4. The training is done using train dataset as input to a pretrained SSD Resnet 50 640x640 model. for this edit_config.py is used to create a config file with paths to train and val dataset also batch size for training. evaluation is done using val dataset by trained model and using the checkpoints from training. 
 5. config file is modified to optimize based on augmentation and new optimizer. training and evaluation is done similar to above steps and using tensorboard the results are compared.
-6.
 
 ### Set up
 Follow the same instructions for local setup which are recommended in the original repository. 
+Except I needed to reinstall the following
+pip install waymo-open-dataset-tf-2-6-0,
+pip install keras==2.6.*
 
 ### Dataset
 #### Dataset analysis
+Images in rainy nights caused false negative for car class. 
+More cars are classified than what actually exist in traffic jams.
+![Download](https://user-images.githubusercontent.com/125278855/226189216-cc2f613f-36c8-4552-bea6-fc78bf5dcd9f.png)
+
 
 
 ### Training
@@ -163,7 +169,8 @@ Using the original config file resulted the following:
 
 ![training1n](https://user-images.githubusercontent.com/125278855/226180774-9417a61d-5e87-4508-a964-a7186847383b.png)
 
-After optimization using the new config file adding augmentation and adam optimizer instead of momentum_optimizer 
+#### Improve on the reference
+The new config file contains augmentation options for brightness and contrast to cover different weather and light situations plus new optimizer, adam optimizer instead of momentum_optimizer is used which resulted converging to a less value of total loss after same number of training steps. 
 
 ![training2n](https://user-images.githubusercontent.com/125278855/226180872-865c92c8-330d-4a05-b30d-d48dc2d4faf1.png)
 
@@ -171,5 +178,3 @@ After optimization using the new config file adding augmentation and adam optimi
 
 ![training2n_recall](https://user-images.githubusercontent.com/125278855/226180894-50fad06b-e99f-455d-8429-9fd1472630f6.png)
 
-#### Improve on the reference
-This section should highlight the different strategies you adopted to improve your model. It should contain relevant figures and details of your findings.
