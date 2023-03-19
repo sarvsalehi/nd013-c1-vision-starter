@@ -157,11 +157,13 @@ pip install keras==2.6.*
 
 ### Dataset
 #### Dataset analysis
-Images in rainy nights caused false negative for car class. 
+Images in rainy or nights caused false negative for car class. 
+![night](https://user-images.githubusercontent.com/125278855/226215013-67fd3877-a2b1-4aa5-9c64-f6e95a183c0c.png)
+![13](https://user-images.githubusercontent.com/125278855/226214651-8edf3c7b-9348-40b2-a8eb-f55274804e97.png)
+![10](https://user-images.githubusercontent.com/125278855/226214636-4e45220e-d875-4783-9ccb-c89ef19537d9.png)
+
 More cars are classified than what actually exist in traffic jams.
 ![Download](https://user-images.githubusercontent.com/125278855/226189216-cc2f613f-36c8-4552-bea6-fc78bf5dcd9f.png)
-
-
 
 ### Training
 #### Reference experiment
@@ -169,8 +171,17 @@ Using the original config file resulted the following:
 
 ![training1n](https://user-images.githubusercontent.com/125278855/226180774-9417a61d-5e87-4508-a964-a7186847383b.png)
 
+
 #### Improve on the reference
-The new config file contains augmentation options for brightness and contrast to cover different weather and light situations plus new optimizer, adam optimizer instead of momentum_optimizer is used which resulted converging to a less value of total loss after same number of training steps. 
+The new config file contains augmentation options for brightness and contrast to cover different weather and light situations 
+![grey_contrast](https://user-images.githubusercontent.com/125278855/226214833-88ffd5f7-5251-4525-8a34-eb1cb98ac840.png) 
+![grey (2)](https://user-images.githubusercontent.com/125278855/226214845-5451544a-d35b-4e8f-af18-d27181d16e45.png)
+
+
+![night](https://user-images.githubusercontent.com/125278855/226215716-d4e7686f-35ff-4fb2-9e95-97cfffec9699.png)
+![rainynight3](https://user-images.githubusercontent.com/125278855/226215722-376fd9d4-b7f0-4c3a-b281-b478e1292405.png)
+
+In addition new optimizer, adam optimizer instead of momentum_optimizer is used which resulted converging to a less value of total loss after same number of training steps. 
 
 ![training2n](https://user-images.githubusercontent.com/125278855/226180872-865c92c8-330d-4a05-b30d-d48dc2d4faf1.png)
 
